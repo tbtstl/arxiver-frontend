@@ -15,11 +15,14 @@ const Component = styled('input')`
   outline: none;
   width: 100%;
   
+  text-decoration: underline;
+  
   animation: ${fadeInUp} 0.5s linear 1;
   animation-fill-mode: both;
   opacity: 0;
   
-  ::placeholder {
+  ::placeholder {  
+    text-decoration: underline;
     color: ${placeholderColor};
   }
 `;
