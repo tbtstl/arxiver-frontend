@@ -16,14 +16,16 @@ const Component = styled('input')`
   width: 100%;
   
   text-decoration: underline;
+  text-align: ${props => props.animate ? 'center' : 'right'}
   
-  animation: ${fadeInUp} 0.5s linear 1;
+  animation: ${props => props.animate ? fadeInUp : null} 0.5s linear 1;
   animation-fill-mode: both;
-  opacity: 0;
+  opacity: ${props => props.animate ? 0 : 1};
   
   ::placeholder {  
     text-decoration: underline;
     color: ${placeholderColor};
+    margin-left: ${props => props.animate ? null : 'auto'}
   }
 `;
 
