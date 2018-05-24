@@ -71,7 +71,7 @@ export default class Brand extends React.Component {
           </BrandedText>
         </Box>
         <Box mx={'auto'} mt={4} w={1}>
-          <Input fontSize={[2,3,4]} pt={3} placeholder={'Search Articles, Authors, or Subjects...'} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} animate/>
+          <Input fontSize={[2,3,4]} pt={3} placeholder={'Search Articles, Authors, or Subjects...'} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} animate={'true'}/>
         </Box>
       </Flex>
     )
