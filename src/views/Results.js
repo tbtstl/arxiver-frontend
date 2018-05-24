@@ -1,16 +1,31 @@
 import * as React from 'react';
-import {Flex, Box, Container, Text} from 'rebass';
+import {Container} from 'rebass';
+import {inject, observer} from 'mobx-react';
+import Publication from "../components/Publication";
 
+const RoundedContainer = Container.extend`
+  border-radius: 4px;
+`
+
+@inject('PublicationStore')
+@observer
 export default class Results extends React.Component {
+  componentDidMount(){
+    const {PublicationStore, match} = this.props;
+    if (!PublicationStore.loading){
+      PublicationStore.setCurrentQuery(match.params.searchQuery);
+      PublicationStore.fetchPublications();
+    }
+  }
+
   render(){
+    const {PublicationStore} = this.props;
     return (
-      <Container>
-        <Flex bg={'white'}>
-          <Box p={2}>
-            <Text color={'text'} >Here is a list of results</Text>
-          </Box>
-        </Flex>
-      </Container>
+      <RoundedContainer bg={'white'}>
+        {PublicationStore.publications.map((pub) => (
+          <Publication publication={pub} key={pub.arxiv_url}/>
+        ))}
+      </RoundedContainer>
     )
   }
 }

@@ -1,19 +1,20 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import {mix} from 'polished';
+import {Input as BaseInput} from 'rebass';
 
 import {fadeInUp} from "../styles/animations";
 import {colors} from "../theme";
 
 const placeholderColor = mix(0.5, colors.text, colors.white);
 
-const Component = styled('input')`
+const Component = BaseInput.extend`
   appearance: none;
   background: transparent;
   border: none;
   text-align: center;
   outline: none;
   width: 100%;
+  box-shadow: none;
   
   text-decoration: underline;
   text-align: ${props => props.animate ? 'center' : 'right'}
@@ -26,6 +27,10 @@ const Component = styled('input')`
     text-decoration: underline;
     color: ${placeholderColor};
     margin-left: ${props => props.animate ? null : 'auto'}
+  }
+  
+  :focus {
+    box-shadow: none;
   }
 `;
 

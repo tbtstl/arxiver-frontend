@@ -5,6 +5,7 @@ import logo from '../static/svg/icon.svg';
 import styled from "styled-components";
 import {observer, inject} from "mobx-react";
 import Navbar from "../components/Navbar";
+import {Link} from "react-router-dom";
 
 const Logo = styled('img')`
   max-height: 100%;
@@ -37,18 +38,19 @@ export default class Brand extends React.Component {
 
   render(){
     const {PublicationStore} = this.props;
-    console.log(this.props);
 
     // If the client has searched already, display brand as a navbar
     if (!this.props.match.isExact){
       return (
         <Navbar>
           <Flex w={1}>
-            <Box mt={'3px'}>
-              <Heading fontSize={[3,4,5]}><Logo src={logo}/></Heading>
+            <Box mt={['10px']}>
+              <Link to={'/'}>
+                <Heading fontSize={[3,4,5]}><Logo src={logo}/></Heading>
+              </Link>
             </Box>
             <Box ml={'auto'} w={1}>
-              <Input placeholder={'Search...'} value={PublicationStore.currentQuery} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
+              <Input fontSize={[3,4,5]} color='text' placeholder={'Search...'} value={PublicationStore.currentQuery} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
             </Box>
           </Flex>
         </Navbar>
@@ -69,7 +71,7 @@ export default class Brand extends React.Component {
           </BrandedText>
         </Box>
         <Box mx={'auto'} mt={4} w={1}>
-          <Input pt={3} placeholder={'Search Articles, Authors, or Subjects...'} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} animate/>
+          <Input fontSize={[2,3,4]} pt={3} placeholder={'Search Articles, Authors, or Subjects...'} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} animate/>
         </Box>
       </Flex>
     )

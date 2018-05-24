@@ -16,12 +16,13 @@ class PublicationStore {
     this.loading = true;
     this.publications = [];
 
+    if (history){
+      history.push(`/${this.currentQuery}`)
+    }
+
     agent.Publications.list(this.currentQuery)
       .then((res) => {
         this.publications = res;
-        if (history){
-          history.push(`/${this.currentQuery}`)
-        }
       })
       .finally(()=>{
         this.loading = false;
