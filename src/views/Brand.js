@@ -35,7 +35,7 @@ export default class Brand extends React.Component {
       return (
         <Navbar>
           <Flex w={1}>
-            <Box>
+            <Box mt={'3px'}>
               <Heading fontSize={[3,4,5]}><Logo src={logo}/></Heading>
             </Box>
             <Box ml={'auto'} w={1}>
