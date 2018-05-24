@@ -5,7 +5,6 @@ class PublicationStore {
   @observable publications = [];
   @observable currentQuery = '';
   @observable loading = false;
-  @observable hasSearched = false;
 
   @action
   setCurrentQuery(query){
@@ -13,19 +12,22 @@ class PublicationStore {
   }
 
   @action
-  fetchPublications(){
+  fetchPublications(history){
     this.loading = true;
-    this.hasSearched = true;
     this.publications = [];
 
     agent.Publications.list(this.currentQuery)
       .then((res) => {
         this.publications = res;
+        if (history){
+          history.push(`/${this.currentQuery}`)
+        }
       })
       .finally(()=>{
         this.loading = false;
       });
   }
 }
+
 
 export default new PublicationStore();

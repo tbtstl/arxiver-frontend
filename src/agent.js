@@ -5,8 +5,6 @@ const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = process.env.REACT_APP_API_ROOT || 'https://api.arxiver.xyz';
 
-const encode = encodeURIComponent;
-
 const handleErrors = err => {
   return err;
 };
@@ -49,11 +47,11 @@ const Publications = {
   }
 };
 
-const Search = {
-  find: (query) => {
-    return requests.get(`/search/${query}`)
-  }
-};
+// const Search = {
+//   find: (query) => {
+//     return requests.get(`/search/${query}`)
+//   }
+// };
 
 export default {
   Publications

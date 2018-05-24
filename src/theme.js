@@ -20,7 +20,7 @@ export const colors = {
 };
 
 const theme = {
-  fonts: {sans: '"Aleo", Helvetica, system-ui, sans-serif'},
+  fonts: {sans: 'Lato, Helvetica, system-ui, sans-serif'},
   colors,
 };
 

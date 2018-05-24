@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import {Provider as StateProvider} from 'mobx-react';
 import {Provider as ThemeProvider} from 'rebass';
 import {injectGlobal} from 'styled-components';
@@ -8,6 +8,7 @@ import theme, {colors} from "./theme";
 
 import Aleo from './styles/Aleo_v1.3/Webfonts/Regular/Aleo-Regular.woff';
 import Brand from "./views/Brand";
+import Results from "./views/Results";
 
 injectGlobal`
   @font-face {
@@ -26,7 +27,8 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <StateProvider {...stores}>
             <div>
-              <Brand/>
+              <Route path={'/'} component={Brand}/>
+              <Route exact path={'/:searchQuery'} component={Results}/>
             </div>
           </StateProvider>
         </ThemeProvider>

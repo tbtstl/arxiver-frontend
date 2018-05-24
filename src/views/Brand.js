@@ -12,6 +12,14 @@ const Logo = styled('img')`
   height: 1em;
 `;
 
+const BrandedHeading = Heading.extend`
+  font-family: "Aleo", system-ui, sans-serif
+`;
+
+const BrandedText = Text.extend`
+  font-family: "Aleo", system-ui, sans-serif
+`;
+
 @inject('PublicationStore')
 @observer
 export default class Brand extends React.Component {
@@ -21,17 +29,18 @@ export default class Brand extends React.Component {
   }
 
   handleKeyPress(e){
-    const {PublicationStore} = this.props;
+    const {PublicationStore, history} = this.props;
     if(e.key === 'Enter'){
-      PublicationStore.fetchPublications();
+      PublicationStore.fetchPublications(history);
     }
   }
 
   render(){
     const {PublicationStore} = this.props;
+    console.log(this.props);
 
     // If the client has searched already, display brand as a navbar
-    if (PublicationStore.hasSearched){
+    if (!this.props.match.isExact){
       return (
         <Navbar>
           <Flex w={1}>
@@ -52,12 +61,12 @@ export default class Brand extends React.Component {
           <Heading fontSize={[7,8,9]}><Logo src={logo}/></Heading>
         </Box>
         <Box mx={'auto'} my={'auto'}>
-          <Heading color='text' fontSize={[7,8,9]}>Arxiver</Heading>
+          <BrandedHeading color='text' fontFamily={'system-ui'} fontSize={[7,8,9]}>Arxiver</BrandedHeading>
         </Box>
         <Box mx={'auto'}>
-          <Text color={'text'} fontSize={[1, 2, 3]}>
+          <BrandedText color={'text'} fontSize={[1, 2, 3]}>
             A simple way to search and save ArXiv articles.
-          </Text>
+          </BrandedText>
         </Box>
         <Box mx={'auto'} mt={4} w={1}>
           <Input pt={3} placeholder={'Search Articles, Authors, or Subjects...'} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} animate/>
