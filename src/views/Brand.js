@@ -22,6 +22,10 @@ const BrandedText = Text.extend`
   font-family: "Aleo", system-ui, sans-serif
 `;
 
+const RightText = Text.extend`
+  text-align: right;
+`;
+
 @inject('PublicationStore')
 @inject('SubjectStore')
 @observer
@@ -63,17 +67,17 @@ export default class Brand extends React.Component {
       return (
         <Navbar>
           <Flex w={1} mb={1}>
-            <Box mt={['10px']} mx={1}>
+            <Box mt={['10px']} mx={1} w={1/5}>
               <Link to={'/'} onClick={this.handleHomeClick.bind(this)}>
                 <Heading fontSize={[5,4,5]} pr={3}><Logo src={logo}/></Heading>
               </Link>
             </Box>
             <Box ml={'auto'} mt={2} pr={1}>
-              <Text fontSize={[2,3,4]} color={'text'}>Publications {filterTypeFriendlyName}</Text>
+              <RightText fontSize={[2,3,4]} color={'text'}>Publications {filterTypeFriendlyName}</RightText>
             </Box>
             <Box>
               {PublicationStore.currentFilterType === PublicationStore.FILTER_TYPE_SUBJECT && (
-                <Select color={'text'} onChange={this.handleSubjectChange.bind(this)} value={PublicationStore.currentQuery}>
+                <Select dir='rtl' color={'text'} fontSize={[2,3,4]} onChange={this.handleSubjectChange.bind(this)} value={PublicationStore.currentQuery}>
                   {SubjectStore.subjects.map(s => (
                     <option key={s.key} value={s.key}>{s.name}</option>
                   ))}
