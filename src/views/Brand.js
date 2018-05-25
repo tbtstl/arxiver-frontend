@@ -43,14 +43,18 @@ export default class Brand extends React.Component {
     if (!this.props.match.isExact){
       return (
         <Navbar>
-          <Flex w={1}>
-            <Box mt={['10px']}>
+          <Flex w={1} mb={1}>
+            <Box mt={['10px']} mx={1}>
               <Link to={'/'}>
-                <Heading fontSize={[3,4,5]}><Logo src={logo}/></Heading>
+                <Heading fontSize={[5,4,5]} pr={3}><Logo src={logo}/></Heading>
               </Link>
             </Box>
-            <Box ml={'auto'} w={1}>
-              <Input fontSize={[3,4,5]}
+            <Box ml={'auto'} mt={2} pr={1}>
+              <Text fontSize={[2,3,4]} color={'text'}>Publications containing</Text>
+            </Box>
+            <Box>
+              <Input fontSize={[2,3,4]}
+                     underline={"true"}
                      color='text'
                      placeholder={'Search...'}
                      value={PublicationStore.currentQuery}
@@ -77,7 +81,7 @@ export default class Brand extends React.Component {
           </BrandedText>
         </Box>
         <Box mx={'auto'} mt={4} w={1}>
-          <Input fontSize={[2,3,4]} pt={3} placeholder={'Search Articles, Authors, or Subjects...'} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} animate={'true'}/>
+          <Input fontSize={[2,3,4]} pt={3} position={'center'} placeholder={'Search Articles, Authors, or Subjects...'} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)} animate={'true'}/>
         </Box>
       </Flex>
     )

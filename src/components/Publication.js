@@ -6,7 +6,7 @@ import {colors} from "../theme";
 import LatexText from "./LatexText";
 
 const Link = styled('a')`
-  color: ${colors.lightPurple}
+  color: ${colors.link}
   text-decoration: none;
   
   :hover {
@@ -33,7 +33,7 @@ export default class Publication extends React.PureComponent {
           <Text color={'darkGrey'}><i className={'fa fa-tags'}/> {subjects.map(s => s.name).join(', ')}</Text>
         </Box>
         <Box w={1}>
-          <Link href={arxiv_url} target={'_blank'}><i className="fa fa-external-link-alt"/> View on ArXiv</Link>&nbsp;
+          <Link href={arxiv_url} target={'_blank'}><i className="fa fa-external-link-alt"/> View on ArXiv</Link>&nbsp;-&nbsp;
           <Link href={pdf} target={'_blank'}><i className="fa fa-file-pdf"/> View PDF</Link>
           <Divider color={'text'}/>
         </Box>

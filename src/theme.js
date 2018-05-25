@@ -16,7 +16,8 @@ export const colors = {
   blue: '#357EDD',
   brandBackground: '#E5D3DA',
   text: '#240A14',
-  background: this.nearWhite
+  background: this.nearWhite,
+  link: '#B27D92',
 };
 
 const theme = {
