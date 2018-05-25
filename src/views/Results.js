@@ -39,11 +39,13 @@ export default class Results extends React.Component {
           <Publication publication={pub} key={pub.arxiv_url}/>
         ))}
         <Flex w={1}>
-          {PublicationStore.moreResults ? (
-            <Box mx='auto' p={2}><HoverText onClick={this.handleMoreButtonClick.bind(this)} color={'text'}>Show More</HoverText></Box>
-          ) : (
-            <Box mx={'auto'} p={2}><Small color={'text'}>No {PublicationStore.currentPage > 1 ? 'More' : ''} Results</Small></Box>
-          )}
+          <Box mx={'auto'} p={2}>
+            {PublicationStore.loading ? (<i className="fa fa-spin fa-spinner"></i>) : PublicationStore.moreResults ? (
+              <HoverText onClick={this.handleMoreButtonClick.bind(this)} color={'text'}>Show More</HoverText>
+            ) : (
+              <Small color={'text'}>No {PublicationStore.currentPage > 1 ? 'More' : ''} Results</Small>
+            )}
+          </Box>
         </Flex>
       </RoundedContainer>
     )

@@ -61,6 +61,8 @@ class PublicationStore {
 
         if(res.length === 0) {
           this.moreResults = false;
+        } else {
+          this.moreResults = true;
         }
       })
       .finally(()=>{
