@@ -21,13 +21,13 @@ export default class Publication extends React.PureComponent {
     return (
       <Flex py={2} px={1} flexWrap={'wrap'}>
         <Box color={'text'} p={1} borderRadius={4} w={1}>
-          <LatexText f={[2,3]} parentEl={Heading}>{title}</LatexText>
+          <LatexText fontSize={[2,3]} parentEl={Heading}>{title}</LatexText>
         </Box>
         <Box ml='auto' py={1}>
           <Text color={'darkGrey'}>{authors.map(a => a.name).join(', ')}</Text>
         </Box>
         <Box w={1}>
-          <LatexText parentEl={Text}>{abstract}</LatexText>
+          <LatexText fontSize={[1, 2]} parentEl={Text}>{abstract}</LatexText>
         </Box>
         <Box w={1} py={2}>
           <Text color={'darkGrey'}><i className={'fa fa-tags'}/> {subjects.map(s => s.name).join(', ')}</Text>
