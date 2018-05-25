@@ -1,10 +1,10 @@
 import * as React from 'react';
+import {Small} from 'rebass';
 import styled from 'styled-components';
 import {observer, inject} from "mobx-react";
-import Publication from "./Publication";
 import {withRouter} from "react-router-dom";
 
-const Component = styled('span')`
+const Component = styled(Small)`
   :hover {
     text-decoration: underline;
     cursor: pointer;
@@ -24,6 +24,6 @@ export default class Author extends React.Component{
   }
 
   render(){
-    return (<Component onClick={this.handleClick.bind(this)}>{this.props.author}&nbsp;</Component>);
+    return (<Component onClick={this.handleClick.bind(this)}>{this.props.author}</Component>);
   }
 }

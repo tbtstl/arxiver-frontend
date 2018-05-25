@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {colors} from "../theme";
 import LatexText from "./LatexText";
 import Author from "./Author";
+import Subject from "./Subject";
 
 const Link = styled('a')`
   color: ${colors.link}
@@ -22,14 +23,27 @@ export default class Publication extends React.PureComponent {
 
     const Subjects = () => {
       if(subjects.filter(s=>s.name!==null).length){
-        return (<Text color={'darkGrey'}><i className={'fa fa-tags'}/> {subjects.filter(s=>s.name!==null).map(s => s.name).join(', ')}</Text>);
+        return (<Text color={'darkGrey'}>
+          <i className={'fa fa-tags'}/>&nbsp;
+          {subjects.filter(s=>s.name!==null).map((s, i) => (
+            <React.Fragment key={s.key}>
+              {!!i && ", "}
+              <Subject key={s.key} subject={s}/>
+            </React.Fragment>
+          ))}
+          </Text>);
       }
       return null;
     };
     let Authors = () => {
       if (authors.length){
         return (<Text color={'darkGrey'}>
-          {authors.map(a => (<Author key={a.name} author={a.name}/>))}
+          {authors.map((a, i) => (
+            <React.Fragment key={a.name}>
+              {!!i && ", "}
+              <Author author={a.name}/>
+            </React.Fragment>
+          ))}
           </Text>)
       }
       return null;

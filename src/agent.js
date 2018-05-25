@@ -53,6 +53,12 @@ const Publications = {
   }
 };
 
+const Subjects = {
+  get: () => {
+    return requests.get('/subjects/')
+  }
+};
+
 // const Search = {
 //   find: (query) => {
 //     return requests.get(`/search/${query}`)
@@ -60,5 +66,6 @@ const Publications = {
 // };
 
 export default {
-  Publications
+  Publications,
+  Subjects
 }
