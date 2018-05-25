@@ -42,8 +42,14 @@ const requests = {
 };
 
 const Publications = {
-  list: (query='', page=1) => {
+  byQuery: (query='', page=1) => {
     return requests.get(`/publications?page=${page}&search=${query}`)
+  },
+  byAuthor: (author='', page=1) => {
+    return requests.get(`/publications?page=${page}&author=${author}`)
+  },
+  bySubject: (subjectKey='', page=1) => {
+    return requests.get(`/publications?page=${page}&subject=${subjectKey}`)
   }
 };
 

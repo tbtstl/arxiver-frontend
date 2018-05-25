@@ -29,7 +29,7 @@ class App extends Component {
           <StateProvider {...stores}>
             <div>
               <Route path={'/'} component={Brand}/>
-              <Route exact path={'/:searchQuery'} component={Results}/>
+              <Route exact path={'/:filterType/:searchQuery'} component={Results}/>
             </div>
           </StateProvider>
         </ThemeProvider>

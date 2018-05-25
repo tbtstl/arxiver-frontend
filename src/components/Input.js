@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {mix} from 'polished';
 import {Input as BaseInput} from 'rebass';
 

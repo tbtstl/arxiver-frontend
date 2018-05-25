@@ -5,7 +5,7 @@ import Publication from "../components/Publication";
 
 const RoundedContainer = Container.extend`
   border-radius: 4px;
-`
+`;
 
 @inject('PublicationStore')
 @observer
@@ -14,6 +14,7 @@ export default class Results extends React.Component {
     const {PublicationStore, match} = this.props;
     if (!PublicationStore.loading){
       PublicationStore.setCurrentQuery(match.params.searchQuery);
+      PublicationStore.setCurrentFilterType(match.params.filterType);
       PublicationStore.fetchPublications();
     }
   }
