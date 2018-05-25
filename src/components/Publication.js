@@ -2,8 +2,8 @@ import * as React from 'react';
 import {Flex, Box, Heading, Text} from 'rebass';
 import {Divider} from "rebass";
 import styled from "styled-components";
-import Latex from 'react-latex';
 import {colors} from "../theme";
+import LatexText from "./LatexText";
 
 const Link = styled('a')`
   color: ${colors.lightPurple}
@@ -21,13 +21,13 @@ export default class Publication extends React.PureComponent {
     return (
       <Flex py={2} px={1} flexWrap={'wrap'}>
         <Box color={'text'} p={1} borderRadius={4} w={1}>
-          <Heading f={[2,3]}><Latex>{title}</Latex></Heading>
+          <LatexText f={[2,3]} parentEl={Heading}>{title}</LatexText>
         </Box>
         <Box ml='auto' py={1}>
           <Text color={'darkGrey'}>{authors.map(a => a.name).join(', ')}</Text>
         </Box>
         <Box w={1}>
-          <Text><Latex>{abstract}</Latex></Text>
+          <LatexText parentEl={Text}>{abstract}</LatexText>
         </Box>
         <Box w={1} py={2}>
           <Text color={'darkGrey'}><i className={'fa fa-tags'}/> {subjects.map(s => s.name).join(', ')}</Text>
