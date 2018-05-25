@@ -6,6 +6,8 @@ class PublicationStore {
   @observable currentQuery = '';
   @observable currentFilterType = 'search';
   @observable loading = false;
+  @observable currentPage = 1;
+  @observable moreResults = true;
 
   FILTER_TYPE_QUERY = 'search';
   FILTER_TYPE_AUTHOR = 'author';
@@ -26,6 +28,8 @@ class PublicationStore {
   @action reset(){
     this.publications = [];
     this.currentQuery = '';
+    this.currentPage = 1;
+    this.moreResults = true;
     this.currentFilterType = 'search';
   }
 
@@ -43,6 +47,7 @@ class PublicationStore {
   fetchPublications(history){
     this.loading = true;
     this.publications = [];
+    this.currentPage = 1;
 
     const agentFilter = this.filterTypeMap[this.currentFilterType];
 
@@ -53,10 +58,33 @@ class PublicationStore {
     agent.Publications[agentFilter](this.currentQuery)
       .then((res) => {
         this.publications = res;
+
+        if(res.length === 0) {
+          this.moreResults = false;
+        }
       })
       .finally(()=>{
         this.loading = false;
       });
+  }
+
+  @action
+  nextPage(){
+    this.loading = true;
+    const agentFilter = this.filterTypeMap[this.currentFilterType];
+
+    agent.Publications[agentFilter](this.currentQuery, this.currentPage+1)
+      .then((res) => {
+        if (res.length > 0){
+          this.currentPage += 1;
+          this.publications = this.publications.concat(res) ;
+        } else {
+          this.moreResults = false;
+        }
+      })
+      .finally(() => {
+        this.loading = false;
+      })
   }
 }
 
