@@ -4,6 +4,7 @@ import {Divider} from "rebass";
 import styled from "styled-components";
 import {colors} from "../theme";
 import LatexText from "./LatexText";
+import Author from "./Author";
 
 const Link = styled('a')`
   color: ${colors.link}
@@ -27,7 +28,9 @@ export default class Publication extends React.PureComponent {
     };
     let Authors = () => {
       if (authors.length){
-        return (<Text color={'darkGrey'}>{authors.map(a => a.name).join(', ')}</Text>)
+        return (<Text color={'darkGrey'}>
+          {authors.map(a => (<Author key={a.name} author={a.name}/>))}
+          </Text>)
       }
       return null;
     };

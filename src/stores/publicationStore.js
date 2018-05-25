@@ -4,14 +4,30 @@ import agent from '../agent';
 class PublicationStore {
   @observable publications = [];
   @observable currentQuery = '';
-  @observable currentFilterType = '';
+  @observable currentFilterType = 'search';
   @observable loading = false;
 
+  FILTER_TYPE_QUERY = 'search';
+  FILTER_TYPE_AUTHOR = 'author';
+  FILTER_TYPE_SUBJECT = 'subject';
+
   filterTypeMap = {
-    search: 'byQuery',
-    author: 'byAuthor',
-    subject: 'bySubject'
+    [this.FILTER_TYPE_QUERY]: 'byQuery',
+    [this.FILTER_TYPE_AUTHOR]: 'byAuthor',
+    [this.FILTER_TYPE_SUBJECT]: 'bySubject'
   };
+
+  filterTypeFriendlyNameMap = {
+    [this.FILTER_TYPE_QUERY]: 'containing',
+    [this.FILTER_TYPE_AUTHOR]: 'by',
+    [this.FILTER_TYPE_SUBJECT]: 'about'
+  };
+
+  @action reset(){
+    this.publications = [];
+    this.currentQuery = '';
+    this.currentFilterType = 'search';
+  }
 
   @action
   setCurrentQuery(query){

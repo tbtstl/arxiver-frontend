@@ -24,6 +24,11 @@ const BrandedText = Text.extend`
 @inject('PublicationStore')
 @observer
 export default class Brand extends React.Component {
+  handleHomeClick(){
+    const {PublicationStore} = this.props;
+    PublicationStore.reset();
+  }
+
   handleInputChange(e){
     const {PublicationStore} = this.props;
     PublicationStore.setCurrentQuery(e.target.value);
@@ -37,20 +42,22 @@ export default class Brand extends React.Component {
   }
 
   render(){
-    const {PublicationStore} = this.props;
+    const {PublicationStore, match} = this.props;
+
+    const filterTypeFriendlyName = PublicationStore.filterTypeFriendlyNameMap[PublicationStore.currentFilterType] || 'containing';
 
     // If the client has searched already, display brand as a navbar
-    if (!this.props.match.isExact){
+    if (!match.isExact){
       return (
         <Navbar>
           <Flex w={1} mb={1}>
             <Box mt={['10px']} mx={1}>
-              <Link to={'/'}>
+              <Link to={'/'} onClick={this.handleHomeClick.bind(this)}>
                 <Heading fontSize={[5,4,5]} pr={3}><Logo src={logo}/></Heading>
               </Link>
             </Box>
             <Box ml={'auto'} mt={2} pr={1}>
-              <Text fontSize={[2,3,4]} color={'text'}>Publications containing</Text>
+              <Text fontSize={[2,3,4]} color={'text'}>Publications {filterTypeFriendlyName}</Text>
             </Box>
             <Box>
               <Input fontSize={[2,3,4]}

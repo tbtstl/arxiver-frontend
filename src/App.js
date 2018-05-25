@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {Provider as StateProvider} from 'mobx-react';
 import {Provider as ThemeProvider} from 'rebass';
 import {injectGlobal} from 'styled-components';
@@ -28,7 +28,9 @@ class App extends Component {
         <ThemeProvider theme={theme}>
           <StateProvider {...stores}>
             <div>
-              <Route path={'/'} component={Brand}/>
+              <Switch>
+                <Route path={'/'} component={Brand}/>
+              </Switch>
               <Route exact path={'/:filterType/:searchQuery'} component={Results}/>
             </div>
           </StateProvider>
