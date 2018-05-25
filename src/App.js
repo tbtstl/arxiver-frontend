@@ -31,7 +31,7 @@ class App extends Component {
               <Switch>
                 <Route path={'/'} component={Brand}/>
               </Switch>
-              <Route exact path={'/:filterType/:searchQuery'} component={Results}/>
+              <Route exact path={'/:filterType/:searchQuery?'} component={Results}/>
             </div>
           </StateProvider>
         </ThemeProvider>

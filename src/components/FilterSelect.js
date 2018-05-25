@@ -3,9 +3,9 @@ import Select from './Select';
 import {withRouter} from "react-router-dom";
 import {inject, observer} from 'mobx-react';
 
+@withRouter
 @inject('PublicationStore')
 @observer
-@withRouter
 export default class FilterSelect extends React.Component {
   handleFilterChange(e){
     const {PublicationStore, history} = this.props;

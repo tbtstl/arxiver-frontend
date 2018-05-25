@@ -61,8 +61,6 @@ export default class Brand extends React.Component {
   render(){
     const {PublicationStore, SubjectStore, match} = this.props;
 
-    const filterTypeFriendlyName = PublicationStore.filterTypeFriendlyNameMap[PublicationStore.currentFilterType] || 'containing';
-
     // If the client has searched already, display brand as a navbar
     if (!match.isExact){
       return (
