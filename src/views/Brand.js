@@ -7,6 +7,7 @@ import {observer, inject} from "mobx-react";
 import Navbar from "../components/Navbar";
 import {Link} from "react-router-dom";
 import Select from "../components/Select";
+import FilterSelect from "../components/FilterSelect";
 
 const Logo = styled('img')`
   max-height: 100%;
@@ -66,25 +67,35 @@ export default class Brand extends React.Component {
     if (!match.isExact){
       return (
         <Navbar>
-          <Flex w={1} mb={1}>
-            <Box mt={['10px']} mx={1} w={1/5}>
+          <Flex w={1} mb={1} flexWrap={'wrap'}>
+            <Box mt={['6px']} mx={1}>
               <Link to={'/'} onClick={this.handleHomeClick.bind(this)}>
                 <Heading fontSize={[5,4,5]} pr={3}><Logo src={logo}/></Heading>
               </Link>
             </Box>
-            <Box ml={'auto'} mt={2} pr={1}>
-              <RightText fontSize={[2,3,4]} color={'text'}>Publications {filterTypeFriendlyName}</RightText>
+            <Box ml={'auto'} mt={2}>
+              <RightText fontSize={[1,2,3]} color={'text'}>
+                Publications
+              </RightText>
+            </Box>
+            <Box mx={1}>
+              <Text fontSize={[1,2,3]} color={'text'}>
+                <FilterSelect/>
+              </Text>
             </Box>
             <Box>
               {PublicationStore.currentFilterType === PublicationStore.FILTER_TYPE_SUBJECT && (
-                <Select dir='rtl' color={'text'} fontSize={[2,3,4]} onChange={this.handleSubjectChange.bind(this)} value={PublicationStore.currentQuery}>
-                  {SubjectStore.subjects.map(s => (
-                    <option key={s.key} value={s.key}>{s.name}</option>
-                  ))}
-                </Select>
+                <Text fontSize={[1,2,3]}>
+                  <Select dir='rtl' color={'text'} fontSize={[2,3,4]} onChange={this.handleSubjectChange.bind(this)} value={PublicationStore.currentQuery}>
+                    <option value="">--Select a subject--</option>
+                    {SubjectStore.subjects.map(s => (
+                      <option key={s.key} value={s.key}>{s.name}</option>
+                    ))}
+                  </Select>
+                </Text>
               )}
               {PublicationStore.currentFilterType !== PublicationStore.FILTER_TYPE_SUBJECT && (
-                <Input fontSize={[2,3,4]}
+                <Input fontSize={[1,2,3]}
                        underline={"true"}
                        color='text'
                        placeholder={'Search...'}
