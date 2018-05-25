@@ -6,7 +6,8 @@ import {injectGlobal} from 'styled-components';
 import * as stores from './stores';
 import theme, {colors} from "./theme";
 
-import Aleo from './styles/Aleo_v1.3/Webfonts/Regular/Aleo-Regular.woff';
+import Aleo from './styles/fonts/Aleo_v1.3/Webfonts/Regular/Aleo-Regular.woff';
+import './styles/fonts/FontAwesome/css/fontawesome-all.css';
 import Brand from "./views/Brand";
 import Results from "./views/Results";
 

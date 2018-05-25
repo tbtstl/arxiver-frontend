@@ -50,7 +50,13 @@ export default class Brand extends React.Component {
               </Link>
             </Box>
             <Box ml={'auto'} w={1}>
-              <Input fontSize={[3,4,5]} color='text' placeholder={'Search...'} value={PublicationStore.currentQuery} onChange={this.handleInputChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
+              <Input fontSize={[3,4,5]}
+                     color='text'
+                     placeholder={'Search...'}
+                     value={PublicationStore.currentQuery}
+                     icon={'search'}
+                     onChange={this.handleInputChange.bind(this)}
+                     onKeyPress={this.handleKeyPress.bind(this)}/>
             </Box>
           </Flex>
         </Navbar>

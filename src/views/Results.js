@@ -21,7 +21,7 @@ export default class Results extends React.Component {
   render(){
     const {PublicationStore} = this.props;
     return (
-      <RoundedContainer bg={'white'}>
+      <RoundedContainer bg={'lightGrey'}>
         {PublicationStore.publications.map((pub) => (
           <Publication publication={pub} key={pub.arxiv_url}/>
         ))}
